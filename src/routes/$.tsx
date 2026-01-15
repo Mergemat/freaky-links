@@ -4,13 +4,30 @@ import { getRequestHost, getRequestUrl } from "@tanstack/start-server-core";
 import { ConvexHttpClient } from "convex/browser";
 import { api } from "../../convex/_generated/api";
 
+const SHORT_ID_REGEX = /^[A-Za-z0-9]{6}$/;
+
 function parseShortIdFromPath(path: string): string | null {
-  // Path format: prefix_SHORTID_suffix
   const withoutSlash = path.startsWith("/") ? path.slice(1) : path;
-  const parts = withoutSlash.split("_");
-  if (parts.length >= 2) {
-    return parts[1];
+
+  // Try old format first: prefix_SHORTID_suffix (backwards compatibility)
+  if (withoutSlash.includes("_")) {
+    const parts = withoutSlash.split("_");
+    if (parts.length >= 2) {
+      return parts[1]; // shortId is the middle part
+    }
   }
+
+  // New format: {freaky-phrase}-{shortId}
+  // shortId is always 6 alphanumeric chars at the end after last hyphen
+  const lastHyphenIndex = withoutSlash.lastIndexOf("-");
+  if (lastHyphenIndex !== -1) {
+    const potentialShortId = withoutSlash.slice(lastHyphenIndex + 1);
+    // Validate it's a 6-char alphanumeric shortId
+    if (SHORT_ID_REGEX.test(potentialShortId)) {
+      return potentialShortId;
+    }
+  }
+
   return null;
 }
 

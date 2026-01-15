@@ -13,12 +13,12 @@ export const createLink = mutation({
     }
 
     const shortId = generateShortId();
-    const { subdomain, path, fullUrl } = generateFreakyUrl(shortId);
+    const { phrase, path, fullUrl } = generateFreakyUrl(shortId);
 
     await ctx.db.insert("links", {
       shortId,
       originalUrl: args.url,
-      freakyPrefix: `${subdomain}/${path}`,
+      freakyPrefix: `${phrase}/${path}`,
       createdAt: Date.now(),
     });
 
