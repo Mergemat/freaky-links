@@ -111,24 +111,6 @@ const FREAKY_PHRASES = [
   "bed-squeaking",
   "neighbors-heard",
   "noise-complaint",
-
-  // Playful & cheeky
-  "bow-chicka-wow-wow",
-  "hubba-hubba",
-  "ooh-la-la",
-  "thats-hot",
-  "spicy-content",
-  "nsfw-link",
-  "for-research-purposes",
-  "asking-for-a-friend",
-  "dont-tell-mom",
-  "delete-this",
-  "eyes-only",
-  "private-collection",
-  "secret-stash",
-  "hidden-folder",
-  "homework-folder",
-  "taxes-2019-folder",
 ] as const;
 
 const BASE_DOMAIN = "fr34ky.link";
