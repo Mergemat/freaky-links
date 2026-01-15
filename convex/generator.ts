@@ -169,7 +169,8 @@ export function generateFreakyUrl(shortId: string): {
 export function parseShortIdFromPath(path: string): string | null {
   const withoutSlash = path.startsWith("/") ? path.slice(1) : path;
 
-  // Try old format first: prefix_SHORTID_suffix (backwards compatibility)
+  // Format 1 (oldest): prefix_SHORTID_suffix
+  // e.g. /leaked_Ab3xYz_pics
   if (withoutSlash.includes("_")) {
     const parts = withoutSlash.split("_");
     if (parts.length >= 2) {
@@ -177,12 +178,17 @@ export function parseShortIdFromPath(path: string): string | null {
     }
   }
 
-  // New format: {freaky-phrase}-{shortId}
-  // shortId is always 6 alphanumeric chars at the end after last hyphen
+  // Format 2 (subdomain era): path IS the shortId
+  // e.g. https://it-slipped-in.fr34ky.link/pDgnsH -> path is just /pDgnsH
+  if (SHORT_ID_REGEX.test(withoutSlash)) {
+    return withoutSlash;
+  }
+
+  // Format 3 (current): {freaky-phrase}-{shortId}
+  // e.g. /throat-goat-Ab3xYz
   const lastHyphenIndex = withoutSlash.lastIndexOf("-");
   if (lastHyphenIndex !== -1) {
     const potentialShortId = withoutSlash.slice(lastHyphenIndex + 1);
-    // Validate it's a 6-char alphanumeric shortId
     if (SHORT_ID_REGEX.test(potentialShortId)) {
       return potentialShortId;
     }
