@@ -113,10 +113,6 @@ function Home() {
             )}
           </CardContent>
         </Card>
-
-        <p className="text-center text-muted-foreground text-xs">
-          Normal links are too trustworthy. Make them freaky.
-        </p>
       </div>
     </div>
   );
