@@ -2,13 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useMutation } from "convex/react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { api } from "../../convex/_generated/api";
 
@@ -61,19 +55,23 @@ function Home() {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-background p-4">
       <div className="w-full max-w-lg space-y-8">
-        <div className="space-y-2 text-center">
+        <div className="space-y-4 text-center">
+          <img
+            alt="Freaky cat"
+            className="mx-auto h-32 w-32 rounded-full"
+            height={128}
+            src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExYnpiY3oyYXhrMW9tbThiem5jbTBkMW12YzhpaTdwZWR2MXBuMHBmbSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/SGrH94u2qJwqhu3Ouu/giphy.gif"
+            width={128}
+          />
           <h1 className="font-bold text-4xl tracking-tight">FreakyLinks</h1>
           <p className="text-muted-foreground">
-            Make your links look <em>suspiciously spicy</em>
+            The URL shortener that makes your links look freaky
           </p>
         </div>
 
         <Card>
           <CardHeader>
             <CardTitle>Paste your innocent link</CardTitle>
-            <CardDescription>
-              We&apos;ll make it look like something it&apos;s definitely not
-            </CardDescription>
           </CardHeader>
           <CardContent>
             <form className="space-y-4" onSubmit={handleSubmit}>
