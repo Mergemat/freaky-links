@@ -89,8 +89,7 @@ export const Route = createRootRouteWithContext<{
       },
       {
         name: "description",
-        content:
-          "The URL shortener that makes your links look freaky",
+        content: "The URL shortener that makes your links look freaky",
       },
     ],
     links: [

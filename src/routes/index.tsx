@@ -1,3 +1,5 @@
+import { GithubIcon, NewTwitterIcon } from "@hugeicons/core-free-icons";
+import { HugeiconsIcon } from "@hugeicons/react";
 import { createFileRoute } from "@tanstack/react-router";
 import { useMutation } from "convex/react";
 import { useState } from "react";
@@ -113,6 +115,25 @@ function Home() {
             )}
           </CardContent>
         </Card>
+
+        <div className="flex items-center justify-center gap-4">
+          <a
+            className="text-muted-foreground transition-colors hover:text-foreground"
+            href="https://x.com/bagase_k"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            <HugeiconsIcon icon={NewTwitterIcon} size={20} />
+          </a>
+          <a
+            className="text-muted-foreground transition-colors hover:text-foreground"
+            href="https://github.com/Mergemat"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            <HugeiconsIcon icon={GithubIcon} size={20} />
+          </a>
+        </div>
       </div>
     </div>
   );
